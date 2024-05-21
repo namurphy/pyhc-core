@@ -1,0 +1,40 @@
+[build-system]
+build-backend = "setuptools.build_meta"
+requires = [
+  "setuptools >= 61.2.0",
+  "setuptools-scm >= 6.3.2",
+  "wheel >= 0.37.0",
+]
+
+[project]
+name = "pyhc_core"
+description = "Python package for plasma science"
+readme = "README.md"
+keywords = [
+  "heliophysics",
+]
+license = {file = "LICENSE.md"}
+# NumPy Enhancement Proposal 29 recommends that packages support minor
+# releases of Python for 42 months after the initial release (see
+# https://numpy.org/neps/nep-0029-deprecation_policy.html#support-table).
+requires-python = ">=3.10"
+
+dependencies = [
+  "hapiclient",
+  "plasmapy",
+  "pysat",
+  "pysatCDAAC",
+  "pysatCDF",
+  "pysatMadrigal",
+  "pysatMissions",
+  "pysatNASA",
+  "pysatSeasons",
+  "pysatSpaceWeather",
+  "pyspedas",
+  "spacepy",
+  "sunpy",
+]
+
+tests = [
+  "nox >= 2024.4.15",
+]
