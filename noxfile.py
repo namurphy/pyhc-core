@@ -15,6 +15,6 @@ def build(session: nox.Session):
 
 
 @nox.session(python=PYTHON_VERSIONS)
-def install(session: nox.Session):
+def compile(session: nox.Session):
     session.install("uv", "nox")
-    session.run("uv", "pip", "compile", "pyproject.toml", "--all-extras")
+    session.run("uv", "pip", "compile", "pyproject.toml", "--all-extras", "--python", session.python)
