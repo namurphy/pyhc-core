@@ -2,7 +2,6 @@
 build-backend = "setuptools.build_meta"
 requires = [
   "setuptools >= 61.2.0",
-  "setuptools-scm >= 6.3.2",
   "wheel >= 0.37.0",
 ]
 
@@ -17,24 +16,70 @@ license = {file = "LICENSE.md"}
 # NumPy Enhancement Proposal 29 recommends that packages support minor
 # releases of Python for 42 months after the initial release (see
 # https://numpy.org/neps/nep-0029-deprecation_policy.html#support-table).
-requires-python = ">=3.10"
+requires-python = ">=3.9"
+version = "0.1.0"
 
 dependencies = [
   "hapiclient",
-  "plasmapy",
+  "numpy",
+  # Because PlasmaPy depends on Numba, it will not work on
+  #  a Python version is released and when Numba is
+  "plasmapy; python_version <= '3.13'",
   "pysat",
-  "pysatCDAAC",
-  "pysatCDF",
-  "pysatMadrigal",
-  "pysatMissions",
-  "pysatNASA",
-  "pysatSeasons",
-  "pysatSpaceWeather",
   "pyspedas",
   "spacepy",
   "sunpy",
 ]
 
+[project.optional-dependencies]
+# The documentation build occurs in an isolated environment that is not
+# user-facing, so we can have stricter requirements.
+pysat = [
+  "pysatCDAAC",
+  "pysatCDF; python_version < '3.12'",
+  "pysatMadrigal",
+  "pysatMissions",
+  "pysatNASA",
+  "pysatSeasons",
+  "pysatSpaceWeather",
+]
+optional = [
+  "aiapy",
+  "aidapy",
+  "ccsdspy",
+  "cdflib",
+  "dbprocessing",
+  "enlilviz",
+  "fiasco",
+  "fisspy",
+  "geodata",
+  "geopack",
+  "geospacelab",
+  "hissw",
+  "irispy-lmsal",
+  "mcalf",
+  "ndcube",
+  "ocbpy",
+  "ommbv; python_version < '3.12'",  # requires numpy.distutils
+  "pycdfpp",
+  "pydarn",
+  "pyglow",
+  "pyrfu",
+  "pytplot",
+  "regularizepsf",
+  "savic",
+  "sciqlop",
+  "skywinder",
+  "solo-epd-loader",
+  "speasy",
+  "spiceypy",
+  "sunkit-image",
+  "sunkit-instruments",
+  "sunraster",
+ # "tomograpy",
+  "viresclient",
+]
 tests = [
-  "nox >= 2024.4.15",
+  "nox",
+  "uv",
 ]
